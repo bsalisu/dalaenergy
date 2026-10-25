@@ -53,4 +53,6 @@ a.dl-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(18,41,90,
 .dl-herob{z-index:1}.dl-hero h1{max-width:16ch}
 .dl-pimg{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;margin-bottom:14px;display:grid;place-items:center;font-size:56px;background:repeating-linear-gradient(135deg,var(--alt) 0 14px,var(--line) 14px 28px)}
 .dl-pimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.dl-price{color:#3f7d12;font-weight:700}@media(prefers-color-scheme:dark){.dl-price{color:var(--green)}}
+.dl-card .dl-price{color:#3f7d12;font-weight:700}@media(prefers-color-scheme:dark){.dl-card .dl-price{color:var(--green)}}
+.dl-pc{border-left:1px solid var(--line);border-radius:20px;padding:22px}.dl-pc .dl-pimg{border-radius:14px}
+.dl-btn-w{background:#3f9a4f;color:#fff;box-shadow:none}
