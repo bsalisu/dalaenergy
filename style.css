@@ -56,3 +56,12 @@ a.dl-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(18,41,90,
 .dl-card .dl-price{color:#3f7d12;font-weight:700}@media(prefers-color-scheme:dark){.dl-card .dl-price{color:var(--green)}}
 .dl-pc{border-left:1px solid var(--line);border-radius:20px;padding:22px}.dl-pc .dl-pimg{border-radius:14px}
 .dl-btn-w{background:#3f9a4f;color:#fff;box-shadow:none}
+.dl-card.dl-pc{background:#1b2338;border:1px solid #2b3550;border-left:1px solid #2b3550;border-radius:20px;padding:22px;color:#fff}
+.dl-card.dl-pc h3{font-size:1.45rem;font-weight:600;color:#fff;margin:0 0 .45em;letter-spacing:-.01em}
+.dl-card.dl-pc p{color:#a9b4cc;margin:0 0 14px;font-size:1.05rem}
+.dl-card.dl-pc .dl-price{color:#5aa862;font-weight:700;font-size:1.35rem;margin:0 0 16px}
+.dl-pc .dl-pimg{aspect-ratio:2.35/1;border-radius:14px;margin-bottom:18px;font-size:1rem;color:#8a96b3;background:repeating-linear-gradient(135deg,#1a2133 0 16px,#252d45 16px 32px)}
+.dl-pc .dl-btn{border-radius:12px;min-height:46px;padding:0 18px;font-size:15px;font-weight:600;box-shadow:none}
+.dl-pc .dl-btn-vd{background:transparent;border:2px solid #38425f;color:#fff}
+.dl-pc .dl-btn-w{background:#4fa35b;color:#fff}
+.dl-pc .dl-row{gap:8px}.dl-pc .dl-btn{padding:0 13px;font-size:14px}
