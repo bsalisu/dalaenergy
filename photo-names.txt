@@ -1,0 +1,31 @@
+Name each product photo exactly like this (.jpg) and upload it to the repository:
+
+CCTV camera  ->  p-cctv-camera.jpg
+DVR  ->  p-dvr.jpg
+NVR  ->  p-nvr.jpg
+Hard drive  ->  p-hard-drive.jpg
+RG59 cable  ->  p-rg59-cable.jpg
+Power supply  ->  p-power-supply.jpg
+BNC connectors  ->  p-bnc-connectors.jpg
+DC power connectors  ->  p-dc-power-connectors.jpg
+CCTV power adapter  ->  p-cctv-power-adapter.jpg
+Power supply box  ->  p-power-supply-box.jpg
+Ethernet cable  ->  p-ethernet-cable.jpg
+RJ45 connectors  ->  p-rj45-connectors.jpg
+PoE switch  ->  p-poe-switch.jpg
+Router  ->  p-router.jpg
+Monitor  ->  p-monitor.jpg
+HDMI cable  ->  p-hdmi-cable.jpg
+VGA cable  ->  p-vga-cable.jpg
+Junction box  ->  p-junction-box.jpg
+Camera mounting bracket  ->  p-camera-mounting-bracket.jpg
+Screws  ->  p-screws.jpg
+Wall plugs  ->  p-wall-plugs.jpg
+Cable clips  ->  p-cable-clips.jpg
+PVC conduit pipes  ->  p-pvc-conduit-pipes.jpg
+Cable trunking  ->  p-cable-trunking.jpg
+CCTV cabinet  ->  p-cctv-cabinet.jpg
+Surge protector  ->  p-surge-protector.jpg
+Crimping tool  ->  p-crimping-tool.jpg
+Cable tester  ->  p-cable-tester.jpg
+Digital multimeter  ->  p-digital-multimeter.jpg
