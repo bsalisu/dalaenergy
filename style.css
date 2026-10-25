@@ -48,3 +48,4 @@ a.dl-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(18,41,90,
 .dl-legal{display:flex;justify-content:space-between;gap:12px;padding-top:18px;padding-bottom:22px;margin-top:24px;border-top:1px solid rgba(255,255,255,.12);font-size:14px}.dl-legal a,.dl-legal span{display:inline;padding:0}
 .dl-rv{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}.dl-rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.dl-rv{opacity:1;transform:none}}
+.dl-ico{display:block;font-size:34px;line-height:1;margin-bottom:12px}
