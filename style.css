@@ -25,7 +25,7 @@ a{color:inherit}h1,h2,h3{line-height:1.15;letter-spacing:-.02em;margin:0 0 .5em}
 .dl-btn-o{border-color:currentColor;color:var(--blue)}.dl-hero .dl-btn-o{color:#fff;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.08)}
 @media(prefers-color-scheme:dark){.dl-btn-o{color:#cfe0ff}}
 .dl-btn:active,.dl-card:active{transform:scale(.97)}.dl-sm{min-height:44px;padding:0 16px;font-size:14px}
-.dl-hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(900px 400px at 85% 0,#1f5fa8 0,transparent 60%),linear-gradient(160deg,var(--deep),var(--navy));padding:64px 0 56px}
+.dl-hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(900px 400px at 85% 0,#1f5fa8 0,transparent 60%),linear-gradient(160deg,var(--deep),var(--navy));padding:64px 0 110px;clip-path:polygon(0 0,100% 0,100% 90%,0 100%)}
 .dl-curve{position:absolute;inset:0;width:100%;height:100%}.dl-herob{position:relative}
 .dl-hero h1{font-size:clamp(2rem,7vw,3.6rem);max-width:15ch;font-weight:800}.dl-hero h1 em{font-style:normal;color:var(--orange)}
 .dl-lead{font-size:clamp(1rem,2.6vw,1.2rem);max-width:56ch;color:#d3def5;margin:0 0 24px}
@@ -49,3 +49,5 @@ a.dl-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(18,41,90,
 .dl-rv{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}.dl-rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.dl-rv{opacity:1;transform:none}}
 .dl-ico{display:block;font-size:34px;line-height:1;margin-bottom:12px}
+.dl-bolt{position:absolute;right:-6%;top:0;height:100%;width:64%;fill:var(--orange);opacity:.45}
+.dl-herob{z-index:1}.dl-hero h1{max-width:16ch}
