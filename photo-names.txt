@@ -29,3 +29,15 @@ Surge protector  ->  p-surge-protector.jpg
 Crimping tool  ->  p-crimping-tool.jpg
 Cable tester  ->  p-cable-tester.jpg
 Digital multimeter  ->  p-digital-multimeter.jpg
+
+Solar products:
+Solar panel  ->  p-solar-panel.jpg
+Solar inverter  ->  p-solar-inverter.jpg
+Battery  ->  p-battery.jpg
+MPPT charge controller  ->  p-mppt-charge-controller.jpg
+DC cable  ->  p-dc-cable.jpg
+MC4 connectors  ->  p-mc4-connectors.jpg
+DC breaker  ->  p-dc-breaker.jpg
+AC breaker  ->  p-ac-breaker.jpg
+Surge protection device  ->  p-surge-protection-device.jpg
+Mounting brackets  ->  p-mounting-brackets.jpg
