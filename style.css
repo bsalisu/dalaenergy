@@ -75,3 +75,4 @@ a.dl-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(18,41,90,
 .dl-ab span{color:var(--ink);font-size:1.05rem}
 .dl-ab-btn{border-radius:12px;border:2px solid var(--line);color:var(--ink);background:transparent}
 @media(prefers-color-scheme:dark){.dl-ab b{color:#fff}}
+.dl-pc .dl-pimg{aspect-ratio:4/3}.dl-pc .dl-pimg img{object-fit:contain;background:#fff;padding:8px;box-sizing:border-box}
