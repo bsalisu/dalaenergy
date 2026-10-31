@@ -21,3 +21,22 @@ window.DALA_SLIDES = [
   'hero-15.jpg',
   'hero-16.jpg'
 ];
+/* Caption shown under each slide, in the same order as the list above. */
+window.DALA_CAPTIONS = [
+  'Solar installation',
+  'Solar installation',
+  'Solar installation',
+  'Solar installation',
+  'CCTV installation',
+  'CCTV installation',
+  'CCTV installation',
+  'CCTV installation',
+  'Starlink connectivity',
+  'Starlink connectivity',
+  'Electrical installation',
+  'Solar installation',
+  'Electrical installation',
+  'Electrical installation',
+  'Electrical installation',
+  'Electrical installation'
+];
