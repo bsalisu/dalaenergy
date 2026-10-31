@@ -96,3 +96,8 @@ a.dl-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(18,41,90,
 .dl-cap{color:#fff;font-weight:700;font-size:13px;white-space:nowrap}
 @media(max-width:420px){.dl-sbin{gap:10px}.dl-cap{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.dl-bars .on b{width:100%}}
+/* Show every photo in full: no cropping, no zoom */
+.dl-slides img,.dl-slides video{width:100%;height:100%;object-fit:contain;object-position:center;transform:translateX(5%)}
+.dl-slides .on{transform:none}
+.dl-slides .out{transform:translateX(-5%)}
+.dl-pc .dl-pimg img{width:100%;height:100%;object-fit:contain;object-position:center;padding:0;background:#fff}
