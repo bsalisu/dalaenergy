@@ -1,0 +1,1 @@
+window.DALA_SITE = {};
