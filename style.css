@@ -127,3 +127,9 @@ a.dl-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(18,41,90,
 .dl-fb img{height:68px}
 .dl-brand img{height:64px;filter:drop-shadow(0 1px 6px rgba(0,0,0,.5))}
 .dl-fb img{height:72px}
+/* Dashboard-controlled options */
+.dl-btn{border-radius:var(--btn-r,99px)}
+.dl-pc .dl-btn{border-radius:12px}
+.dl-noanim *,.dl-noanim *::before,.dl-noanim *::after{transition:none!important;animation:none!important}
+.dl-noanim .dl-bars .on b{width:100%}
+.dl-foot .dl-fgrid a[target]{display:inline-block;margin-right:14px}
