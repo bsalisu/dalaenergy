@@ -6,6 +6,7 @@ op.addEventListener('click',function(){tog(true)});$('close').addEventListener('
 d.addEventListener('keydown',function(e){if(e.key==='Escape')tog(false)});
 var p=$('prog');addEventListener('scroll',function(){var h=d.documentElement;p.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+'%'},{passive:true});
 $('top').addEventListener('click',function(e){e.preventDefault();scrollTo({top:0})});
+var hd=d.querySelector('.dl-head');function sc(){if(hd)hd.classList.toggle('scrolled',(window.pageYOffset||d.documentElement.scrollTop)>30)}addEventListener('scroll',sc,{passive:true});sc();
 var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 function cnt(el){var n=+el.dataset.n,s=el.dataset.s||'',t=0;if(rm){el.textContent=n.toLocaleString()+s;return}
 var st=performance.now();(function f(now){var k=Math.min((now-st)/1400,1);el.textContent=Math.round(n*k).toLocaleString()+(k===1?s:'');if(k<1)requestAnimationFrame(f)})(st)}

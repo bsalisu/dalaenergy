@@ -112,3 +112,9 @@ a.dl-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(18,41,90,
 .dl-hero{clip-path:none;padding-bottom:96px}
 .dl-sbar{bottom:30px}
 .dl-slides::after{background:linear-gradient(180deg,rgba(7,16,38,.42),rgba(7,16,38,.58) 50%,rgba(7,16,38,.72))}
+/* Header is clear over the photo at the top of the page; solid again after scrolling */
+.dl-head{position:fixed;top:0;left:0;right:0;background:transparent;border-bottom:1px solid transparent;backdrop-filter:none;-webkit-backdrop-filter:none;transition:background .3s,border-color .3s}
+.dl-head::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,16,38,.55),rgba(7,16,38,0));pointer-events:none;transition:opacity .3s;z-index:-1}
+.dl-head.scrolled{background:rgba(11,27,61,.95);border-bottom-color:rgba(255,255,255,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.dl-head.scrolled::before{opacity:0}
+.dl-hero{padding-top:138px}
