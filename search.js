@@ -21,6 +21,7 @@ var st=/out of stock/i.test(pr)?'out':/in stock/i.test(pr)?'in':'ask',o={id:slug
 o.F=[{t:toks(o.name),w:1},{t:toks(o.kw),w:.8},{t:toks(o.brand),w:.8},{t:toks(o.cat),w:.5}];if(ds&&ds!==DEFDESC)o.F.push({t:toks(ds),w:.15});o.full=norm(o.name);P.push(o)})}
 function search(text){var qt=toks(text);if(!qt.length)return[];var qn=norm(text).trim(),out=[];
 P.forEach(function(p){var tot=0,ok=true;qt.forEach(function(t){var s=tokScore(t,p.F);if(!s){SYN.forEach(function(g){if(g.indexOf(t)>-1)g.forEach(function(a){if(a!==t){var v=tokScore(a,p.F)*.7;if(v>s)s=v}})})}if(!s)ok=false;tot+=s});
+if(!ok&&qt.length>1){var cs=tokScore(qt.join(''),p.F);if(cs>=6){ok=true;tot=cs}}
 if(ok){if(p.full.indexOf(qn)>-1)tot+=8;out.push({p:p,s:tot})}});
 out.sort(function(a,b){return b.s-a.s||a.p.name.localeCompare(b.p.name)});return out.map(function(x){return x.p})}
 function didYouMean(text){var vocab={};P.forEach(function(p){toks(p.name+' '+p.kw+' '+p.brand).forEach(function(w){vocab[w]=1})});var out=toks(text).map(function(t){if(vocab[t])return t;var b=t,bd=3;Object.keys(vocab).forEach(function(w){var dd=lev(t,w);if(dd<bd){bd=dd;b=w}});return b});var r=out.join(' ');return r&&r!==toks(text).join(' ')&&search(r).length?r:''}
