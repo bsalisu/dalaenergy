@@ -44,11 +44,10 @@ if(v('phone').replace(/\D/g,'').length<7)return bad('Please enter a valid phone 
 if(v('email')&&!/^\S+@\S+\.\S+$/.test(v('email')))return bad('Please check your email address.');
 if(!v('service'))return bad('Please choose the service you need.');
 var m='Hello DALA ENERGY, I would like to request a consultation.\nName: '+v('name')+'\nPhone: '+v('phone')+(v('email')?'\nEmail: '+v('email'):'')+'\nService: '+v('service')+(v('message')?'\nMessage: '+v('message'):'');
-var wa='https://wa.me/'+wnum()+'?text='+encodeURIComponent(m),ep=((window.DALA_SITE||{}).contact||{}).formEndpoint;
-function viaWA(){ok.innerHTML='Thank you, '+d.createTextNode(v('name')).textContent.replace(/</g,'&lt;')+'. Your details are ready. Tap the button to send them to our team on WhatsApp.<br><a class="dl-btn dl-btn-w dl-full" target="_blank" rel="noopener" href="'+wa+'">Send on WhatsApp</a>';ok.hidden=false;window.open(wa,'_blank')}
-if(!ep)return viaWA();
+var wa='https://wa.me/'+wnum()+'?text='+encodeURIComponent(m),C2=(window.DALA_SITE||{}).contact||{},custom=!!C2.formEndpoint,ep=C2.formEndpoint||('https://formsubmit.co/ajax/'+(C2.email||'Dalaenergyltd@gmail.com'));
+function viaWA(fail){ok.innerHTML=(fail?'We could not send it by email just now, so please use WhatsApp. ':'')+'Thank you, '+d.createTextNode(v('name')).textContent.replace(/</g,'&lt;')+'. Your details are ready. Tap the button to send them to our team on WhatsApp.<br><a class="dl-btn dl-btn-w dl-full" target="_blank" rel="noopener" href="'+wa+'">Send on WhatsApp</a>';ok.hidden=false;window.open(wa,'_blank')}
 btn.disabled=true;btn.textContent='Sending...';
-fetch(ep,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:v('name'),phone:v('phone'),email:v('email'),service:v('service'),message:v('message')})})
-.then(function(r){if(!r.ok)throw 0;ok.textContent='Thank you! We received your request and will contact you soon.';ok.hidden=false;f.reset()}).catch(function(){viaWA()}).then(function(){btn.disabled=false;btn.textContent='Request Consultation'})});
+fetch(ep,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:v('name'),phone:v('phone'),email:v('email'),service:v('service'),message:v('message'),_subject:'New consultation request from '+v('name')+' - DALA ENERGY website',_template:'table',_captcha:'false',_honey:''})})
+.then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||(!custom&&j.success!==true&&j.success!=='true'))throw 0;ok.textContent='Thank you! Your message has been sent to DALA ENERGY. We will contact you soon.';ok.hidden=false;f.reset()})}).catch(function(){viaWA(true)}).then(function(){btn.disabled=false;btn.textContent='Request Consultation'})});
 })();
 })();
