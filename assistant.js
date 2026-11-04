@@ -39,15 +39,23 @@ var log=[],open=false,st=null,name='',busy=false,root,msgs,inp,panel,tip,btn;
 try{log=JSON.parse(sessionStorage.getItem('dla_log')||'[]');open=sessionStorage.getItem('dla_open')==='1';st=JSON.parse(sessionStorage.getItem('dla_st')||'null');name=sessionStorage.getItem('dla_name')||''}catch(e){}
 function save(){try{sessionStorage.setItem('dla_log',JSON.stringify(log.slice(-60)));sessionStorage.setItem('dla_open',open?'1':'0');sessionStorage.setItem('dla_st',JSON.stringify(st));sessionStorage.setItem('dla_name',name)}catch(e){}}
 var MIC='<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>';
-function build(){root=d.createElement('div');root.className='dla';root.innerHTML='<div class="dla-tip" hidden></div><button type="button" class="dla-btn" aria-label="Chat with '+esc(NAME)+'">'+MIC+'</button>'+
+function build(){root=d.createElement('div');root.className='dla';root.innerHTML='<div class="dla-wel" role="status" aria-live="polite" hidden></div><button type="button" class="dla-btn" aria-label="Chat with '+esc(NAME)+'">'+MIC+'</button>'+
 '<section class="dla-panel" role="dialog" aria-label="'+esc(NAME)+'" hidden><header><img src="logo.png" alt="DALA ENERGY"><div><b>'+esc(NAME)+'</b><span><i></i> Online now</span></div><button type="button" class="dla-x" aria-label="Close chat">×</button></header><div class="dla-msgs" aria-live="polite"></div><form class="dla-in"><input type="text" placeholder="Type your message…" aria-label="Type your message" autocomplete="off"><button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3 20l18-8L3 4v6l11 2-11 2z"/></svg></button></form></section>';
-d.body.appendChild(root);panel=root.querySelector('.dla-panel');msgs=root.querySelector('.dla-msgs');inp=root.querySelector('input');btn=root.querySelector('.dla-btn');tip=root.querySelector('.dla-tip');
+d.body.appendChild(root);panel=root.querySelector('.dla-panel');msgs=root.querySelector('.dla-msgs');inp=root.querySelector('input');btn=root.querySelector('.dla-btn');tip=root.querySelector('.dla-wel');
 btn.addEventListener('click',function(){toggle(!open)});root.querySelector('.dla-x').addEventListener('click',function(){toggle(false)});
 root.querySelector('form').addEventListener('submit',function(e){e.preventDefault();var t=inp.value.trim();if(!t||busy)return;inp.value='';me(t);handle(t)});
 msgs.addEventListener('click',function(e){var c=e.target.closest('.dla-chip');if(c&&!busy){var t=c.getAttribute('data-t');me(t);handle(t)}});
 d.addEventListener('keydown',function(e){if(e.key==='Escape'&&open&&!d.querySelector('.dl-pd'))toggle(false)});
-log.forEach(function(m,i){paint(m,i===log.length-1)});if(open)toggle(true,true);else setTimeout(function(){if(!open&&!sessionStorage.getItem('dla_tip')&&!log.length){tip.textContent='Hello! Need help? Chat with us.';tip.hidden=false;sessionStorage.setItem('dla_tip','1');tip.onclick=function(){toggle(true)};setTimeout(function(){tip.hidden=true},9000)}},5000)}
-function toggle(v,quiet){open=v;panel.hidden=!v;btn.classList.toggle('on',v);tip.hidden=true;d.documentElement.classList.toggle('dla-open',v&&matchMedia('(max-width:560px)').matches);if(v){if(!log.length)welcome();scroll();if(!quiet)setTimeout(function(){inp.focus()},50)}save()}
+log.forEach(function(m,i){paint(m,i===log.length-1)});if(open)toggle(true,true);else if(A.welcome!==false)setTimeout(showWelcome,900)}
+var WELCOME=['👋 Hello! Welcome to Dala Energy ⚡','Thank you for contacting us! We’re happy to assist you.','How can we help you today? Are you interested in Solar Energy, CCTV Cameras, Security Systems, or any of our other services?','We’re always here to help! 😊'];
+var welTimer=null;
+function showWelcome(){if(open||!tip)return;var L=A.welcomeText?String(A.welcomeText).split(/\n+/).filter(Boolean):WELCOME,secs=+A.welcomeSeconds||5;
+tip.innerHTML='<button type="button" class="dla-wx" aria-label="Close message">×</button><b>'+esc(L[0])+'</b>'+L.slice(1).map(function(x){return '<p>'+esc(x)+'</p>'}).join('')+'<i class="dla-wbar" style="animation-duration:'+secs+'s"></i>';
+tip.classList.remove('out');tip.hidden=false;
+tip.onclick=function(e){if(e.target.closest('.dla-wx')){hideWelcome();return}toggle(true)};
+clearTimeout(welTimer);welTimer=setTimeout(hideWelcome,secs*1000)}
+function hideWelcome(){clearTimeout(welTimer);if(!tip||tip.hidden)return;tip.classList.add('out');setTimeout(function(){tip.hidden=true;tip.classList.remove('out')},400)}
+function toggle(v,quiet){open=v;panel.hidden=!v;btn.classList.toggle('on',v);hideWelcome();d.documentElement.classList.toggle('dla-open',v&&matchMedia('(max-width:560px)').matches);if(v){if(!log.length)welcome();scroll();if(!quiet)setTimeout(function(){inp.focus()},50)}save()}
 function scroll(){msgs.scrollTop=msgs.scrollHeight}
 function chipsHtml(c){return c&&c.length?'<div class="dla-chips">'+c.map(function(x){return '<button type="button" class="dla-chip" data-t="'+esc(x)+'">'+esc(x)+'</button>'}).join('')+'</div>':''}
 function paint(m,last){var el=d.createElement('div');el.className='dla-m '+(m.r==='u'?'u':'b');el.innerHTML='<div class="dla-b">'+m.h+'</div>'+(m.r==='b'&&last?chipsHtml(m.c):'');msgs.appendChild(el);scroll()}
@@ -57,7 +65,7 @@ setTimeout(function(){ty.remove();var m={r:'b',h:h,c:c||[]};log.push(m);paint(m,
 /* ---------- conversation ---------- */
 var MAIN=['Our services','Find a product','Request a quote','Contact us','Talk to a person'];
 function hello(){var h=new Date().getHours();return h<12?'Good morning':h<17?'Good afternoon':'Good evening'}
-function welcome(){say(esc(A.greeting||(hello()+'! Welcome to DALA ENERGY. I am your virtual assistant. I can tell you about our services, find products, prepare a quote request, or connect you to our team. What would you like to do?')),MAIN)}
+function welcome(){say(A.greeting?esc(A.greeting):WELCOME.map(esc).join('<br>'),MAIN)}
 function contactMsg(){return 'You can reach us here:<br>Phone / WhatsApp: <a href="tel:+'+dg(PH1)+'">'+esc(PH1)+'</a> and <a href="tel:+'+dg(PH2)+'">'+esc(PH2)+'</a><br>Email: <a href="mailto:'+esc(EM)+'">'+esc(EM)+'</a><br>Outlet: '+esc(AD)+'<br><a href="'+wal('Hello DALA ENERGY,')+'" target="_blank" rel="noopener" class="dla-go">Chat on WhatsApp</a>'}
 function human(){say('Of course. Our team will be happy to talk with you. Tap the button to chat with them on WhatsApp.<br><a href="'+wal('Hello DALA ENERGY, I would like to speak to someone.')+'" target="_blank" rel="noopener" class="dla-go">Chat with our team</a>',['Request a quote','Contact us'])}
 function services(){say('Here is what we do:<br>'+SERV.map(function(s){return '• <b>'+s.t+'</b>'}).join('<br>')+'<br>Tap one to learn more, or ask me for a quote.',SERV.map(function(s){return s.t}).concat(['Request a quote']))}
