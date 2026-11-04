@@ -33,4 +33,22 @@ if(sl.length>1){ld(1);setInterval(function(){if(d.hidden)return;act(si,false);si
 d.querySelectorAll('.dl-slides').forEach(function(b,n){
 var l=b.dataset.slides?b.dataset.slides.split(',').map(function(x){return x.trim()}).filter(Boolean):(n===0?window.DALA_SLIDES:null);
 initSlider(b,l,(+b.dataset.seconds||window.DALA_SLIDE_SECONDS||5)*1000,b.dataset.captions?b.dataset.captions.split('|'):(n===0?window.DALA_CAPTIONS:null))});
+/* consultation form */
+(function(){var f=d.getElementById('dlform');if(!f)return;var err=f.querySelector('.dl-ferr'),ok=f.querySelector('.dl-fok'),btn=f.querySelector('button[type=submit]');
+function wnum(){var a=d.querySelector('a[href*="wa.me/"]');var m=a&&a.getAttribute('href').match(/wa\.me\/(\d+)/);return m?m[1]:'2349045581684'}
+function bad(m){err.textContent=m;err.hidden=false}
+f.addEventListener('submit',function(e){e.preventDefault();err.hidden=true;ok.hidden=true;var v=function(n){return(f.elements[n].value||'').trim()};
+if(f.elements._gotcha.value)return;
+if(!v('name'))return bad('Please enter your name.');
+if(v('phone').replace(/\D/g,'').length<7)return bad('Please enter a valid phone number.');
+if(v('email')&&!/^\S+@\S+\.\S+$/.test(v('email')))return bad('Please check your email address.');
+if(!v('service'))return bad('Please choose the service you need.');
+var m='Hello DALA ENERGY, I would like to request a consultation.\nName: '+v('name')+'\nPhone: '+v('phone')+(v('email')?'\nEmail: '+v('email'):'')+'\nService: '+v('service')+(v('message')?'\nMessage: '+v('message'):'');
+var wa='https://wa.me/'+wnum()+'?text='+encodeURIComponent(m),ep=((window.DALA_SITE||{}).contact||{}).formEndpoint;
+function viaWA(){ok.innerHTML='Thank you, '+d.createTextNode(v('name')).textContent.replace(/</g,'&lt;')+'. Your details are ready. Tap the button to send them to our team on WhatsApp.<br><a class="dl-btn dl-btn-w dl-full" target="_blank" rel="noopener" href="'+wa+'">Send on WhatsApp</a>';ok.hidden=false;window.open(wa,'_blank')}
+if(!ep)return viaWA();
+btn.disabled=true;btn.textContent='Sending...';
+fetch(ep,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:v('name'),phone:v('phone'),email:v('email'),service:v('service'),message:v('message')})})
+.then(function(r){if(!r.ok)throw 0;ok.textContent='Thank you! We received your request and will contact you soon.';ok.hidden=false;f.reset()}).catch(function(){viaWA()}).then(function(){btn.disabled=false;btn.textContent='Request Consultation'})});
+})();
 })();
